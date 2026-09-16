@@ -2,8 +2,13 @@ package main
 
 import "github.com/maurodesouza/learning-go/src/classes/basic"
 
-const CURRENT_CLASS = 1
+const CURRENT_CLASS = "loops"
 
 func main() {
-	basic.Class1()
+	switch CURRENT_CLASS {
+	case "loops":
+		basic.LoopsClass()
+	case "variables_and_mutability":
+		basic.ClassVariablesAndMutability()
+	}
 }

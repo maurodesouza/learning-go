@@ -12,6 +12,7 @@ how the language behaves.
 
 - [Overview](#overview)
 - [Variables and Mutability](#variables-and-mutability)
+- [Loops](#loops)
 - [How to run](#how-to-run)
 
 ## Variables and Mutability
@@ -60,6 +61,53 @@ long as **at least one new variable** is introduced on the left side:
 ```go
 a := "test"
 a, b := "modified", 2 // ok: b is new, so a is reassigned
+```
+
+[Back to top](#learning-go)
+
+## Loops
+
+> Lesson file: [`src/classes/basic/loops.go`](src/classes/basic/loops.go)
+
+A quick recap of the topic covered in lesson 2.
+
+Go has a single loop keyword, `for`, which covers every looping style.
+
+### Condition ("while")
+
+Runs while the condition is true — Go's version of a `while` loop:
+
+```go
+for condition {
+}
+```
+
+### Classic for
+
+The traditional three-part loop:
+
+```go
+for initialization; condition; update {
+}
+```
+
+### Range
+
+Iterates over a collection (slice, map, string, ...), yielding the index/key
+and the value:
+
+```go
+for index, value := range collection {
+}
+```
+
+### Infinite
+
+Loops forever until a `break` (or `return`) is reached:
+
+```go
+for {
+}
 ```
 
 [Back to top](#learning-go)
