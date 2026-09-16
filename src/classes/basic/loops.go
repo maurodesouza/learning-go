@@ -7,7 +7,7 @@ import (
 	"github.com/maurodesouza/learning-go/src/utils"
 )
 
-func LoopsClass() {
+func LessonLoops() {
 
 	utils.PrintHeader("LOOPS")
 	utils.PrintSeparator()
