@@ -16,7 +16,7 @@ var (
 
 // test := "test" // := only works inside a function, so it can't be used at package level
 
-func Class1() {
+func ClassVariablesAndMutability() {
 	// IMMUTABLE_CONST = "mutable" // This will cause a compile error
 
 	utils.PrintHeader("DECLARATION")

@@ -6,7 +6,7 @@ import (
 	"github.com/maurodesouza/learning-go/src/utils"
 )
 
-func TestClass1(t *testing.T) {
+func TestVariablesAndMutability(t *testing.T) {
 	utils.AssertEqual(t, globalStringVar, "")
 	utils.AssertEqual(t, globalIntVar, 0)
 	utils.AssertEqual(t, globalBoolVar, false)
