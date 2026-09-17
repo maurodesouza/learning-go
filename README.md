@@ -13,11 +13,12 @@ how the language behaves.
 - [Overview](#overview)
 - [Variables and Mutability](#variables-and-mutability)
 - [Loops](#loops)
+- [Functions](#functions)
 - [How to run](#how-to-run)
 
 ## Variables and Mutability
 
-> Lesson file: [`src/classes/basic/1_variables_and_mutability.go`](src/classes/basic/1_variables_and_mutability.go)
+> Lesson file: [`src/classes/basic/variables_and_mutability.go`](src/classes/basic/variables_and_mutability.go)
 
 A quick recap of the topic covered in lesson 1.
 
@@ -108,6 +109,87 @@ Loops forever until a `break` (or `return`) is reached:
 ```go
 for {
 }
+```
+
+[Back to top](#learning-go)
+
+## Functions
+
+> Lesson file: [`src/classes/basic/funcs.go`](src/classes/basic/funcs.go)
+
+A quick recap of the topic covered in lesson 3.
+
+### Functions are values
+
+Functions can be assigned to variables or invoked immediately (IIFE).
+Consecutive params of the same type can share the type declaration:
+
+```go
+sum := func(a, b int) int {
+	return a + b
+}
+sum(1, 2) // 3
+
+// IIFE: declared and called at once
+result := func(a, b int) int {
+	return a + b
+}(1, 2)
+```
+
+### Variadic params
+
+`...T` accepts any number of arguments and receives them as a slice. Spread
+a slice into the call with `slice...`:
+
+```go
+func sum(numbers ...int) int { ... }
+
+sum(1, 2, 3, 4, 5)
+sum(slice...)
+```
+
+### Multiple and named returns
+
+A function can return several values. Naming the returns lets a bare
+`return` yield them:
+
+```go
+func calc(numbers ...int) (int, int) {
+	return sumTotal, multiplyTotal
+}
+
+func calc(numbers ...int) (sumTotal int, multiplyTotal int) {
+	// ...
+	return // naked return
+}
+```
+
+### Closures and higher-order functions
+
+Functions can take and return other functions. The returned function
+captures variables from the enclosing scope:
+
+```go
+counter := func() func() int {
+	count := 0
+	return func() int {
+		count++
+		return count
+	}
+}()
+
+counter() // 1
+counter() // 2
+```
+
+### defer
+
+`defer` schedules a call to run when the surrounding function returns —
+after the return value is computed, before the caller resumes:
+
+```go
+defer first()
+second() // prints "second", then deferred "first" runs on return
 ```
 
 [Back to top](#learning-go)
