@@ -14,6 +14,7 @@ how the language behaves.
 - [Variables and Mutability](#variables-and-mutability)
 - [Loops](#loops)
 - [Functions](#functions)
+- [Goroutines and WaitGroups](#goroutines-and-waitgroups)
 - [How to run](#how-to-run)
 
 ## Variables and Mutability
@@ -191,6 +192,51 @@ after the return value is computed, before the caller resumes:
 defer first()
 second() // prints "second", then deferred "first" runs on return
 ```
+
+[Back to top](#learning-go)
+
+## Goroutines and WaitGroups
+
+> Lesson file: [`src/classes/goroutines/wait-group.go`](src/classes/goroutines/wait-group.go)
+
+A quick recap of the topic covered in lesson 4.
+
+### Goroutines
+
+A **goroutine** is a lightweight thread managed by the Go runtime. Start one
+with the `go` keyword followed by a function call (often an inline IIFE):
+
+```go
+go func() {
+	// runs concurrently with the caller
+}()
+```
+
+Goroutines run in the same address space, so shared data needs
+synchronization. Their execution order is **not** guaranteed.
+
+### WaitGroup
+
+A `sync.WaitGroup` waits for a collection of goroutines to finish. The
+pattern is `Add` → `Done` → `Wait`:
+
+```go
+var wg sync.WaitGroup
+
+wg.Add(n) // n = number of goroutines to wait for
+
+go func() {
+	defer wg.Done() // signal completion when this goroutine exits
+	// work...
+}()
+
+wg.Wait() // blocks until the counter reaches 0
+```
+
+- `Add(n)` increments the counter by `n` (call it **before** launching the
+  goroutines).
+- `Done()` decrements the counter by 1 (typically `defer`red).
+- `Wait()` blocks until the counter is 0.
 
 [Back to top](#learning-go)
 

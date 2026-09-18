@@ -4,9 +4,10 @@ import (
 	"fmt"
 
 	"github.com/maurodesouza/learning-go/src/classes/basic"
+	"github.com/maurodesouza/learning-go/src/classes/goroutines"
 )
 
-const CURRENT_CLASS = "funcs"
+const CURRENT_CLASS = "wait_group"
 
 func init() {
 	fmt.Println("initializing package")
@@ -20,5 +21,7 @@ func main() {
 		basic.LessonVariablesAndMutability()
 	case "funcs":
 		basic.LessonFuncs()
+	case "wait_group":
+		goroutines.LessonWaitGroup()
 	}
 }
